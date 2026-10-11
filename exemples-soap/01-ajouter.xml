@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:per="http://tp.sn/personnes">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <per:addPersonneRequest>
+      <per:nom>Diop</per:nom>
+      <per:prenom>Aminata</per:prenom>
+      <per:age>25</per:age>
+    </per:addPersonneRequest>
+  </soapenv:Body>
+</soapenv:Envelope>

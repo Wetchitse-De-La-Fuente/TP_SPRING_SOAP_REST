@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: rest-client
+soap:
+  service:
+    url: ${SOAP_SERVICE_URL:http://localhost:8081/ws}

@@ -1,0 +1,33 @@
+### API REST - Lister toutes les personnes
+GET http://localhost:8080/api/personnes
+Accept: application/json
+
+### API REST - Ajouter une personne
+POST http://localhost:8080/api/personnes
+Content-Type: application/json
+
+{
+  "nom": "Diop",
+  "prenom": "Aminata",
+  "age": 25
+}
+
+### API REST - Lire une personne (remplacer 1 par le vrai ID)
+GET http://localhost:8080/api/personnes/1
+Accept: application/json
+
+### API REST - Modifier une personne
+PUT http://localhost:8080/api/personnes/1
+Content-Type: application/json
+
+{
+  "nom": "Diop",
+  "prenom": "Awa",
+  "age": 26
+}
+
+### API REST - Supprimer une personne
+DELETE http://localhost:8080/api/personnes/1
+
+### SOAP - Lecture du contrat (WSDL)
+GET http://localhost:8081/ws/personnes.wsdl

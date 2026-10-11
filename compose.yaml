@@ -1,0 +1,25 @@
+services:
+  soap-service:
+    build:
+      context: .
+      dockerfile: soap-service/Dockerfile
+    ports:
+      - "8081:8081"
+    volumes:
+      - soap-donnees:/app/data
+    restart: unless-stopped
+
+  rest-client:
+    build:
+      context: .
+      dockerfile: rest-client/Dockerfile
+    environment:
+      SOAP_SERVICE_URL: http://soap-service:8081/ws
+    ports:
+      - "8080:8080"
+    depends_on:
+      - soap-service
+    restart: unless-stopped
+
+volumes:
+  soap-donnees:

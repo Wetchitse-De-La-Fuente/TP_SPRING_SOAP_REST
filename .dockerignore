@@ -1,0 +1,9 @@
+**/target
+.idea
+.git
+*.zip
+**/*.iml
+**/.classpath
+**/.project
+**/.settings
+**/data

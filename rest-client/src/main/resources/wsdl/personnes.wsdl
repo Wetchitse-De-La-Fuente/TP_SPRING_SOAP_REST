@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tp.sn/personnes" name="PersonnesPortService" targetNamespace="http://tp.sn/personnes">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://tp.sn/personnes" targetNamespace="http://tp.sn/personnes" elementFormDefault="qualified">
+      <xs:complexType name="personneType">
+        <xs:sequence>
+          <xs:element name="id" type="xs:long"/>
+          <xs:element name="nom" type="xs:string"/>
+          <xs:element name="prenom" type="xs:string"/>
+          <xs:element name="age" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addPersonneRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addPersonneResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="personne" type="tns:personneType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPersonneRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPersonneResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="personne" type="tns:personneType" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllPersonnesRequest">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllPersonnesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="personne" type="tns:personneType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="updatePersonneRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="updatePersonneResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="personne" type="tns:personneType" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deletePersonneRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deletePersonneResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="deleted" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addPersonneRequest">
+    <wsdl:part name="parameters" element="tns:addPersonneRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addPersonneResponse">
+    <wsdl:part name="parameters" element="tns:addPersonneResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getPersonneRequest">
+    <wsdl:part name="parameters" element="tns:getPersonneRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getPersonneResponse">
+    <wsdl:part name="parameters" element="tns:getPersonneResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getAllPersonnesRequest">
+    <wsdl:part name="parameters" element="tns:getAllPersonnesRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getAllPersonnesResponse">
+    <wsdl:part name="parameters" element="tns:getAllPersonnesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="updatePersonneRequest">
+    <wsdl:part name="parameters" element="tns:updatePersonneRequest"/>
+  </wsdl:message>
+  <wsdl:message name="updatePersonneResponse">
+    <wsdl:part name="parameters" element="tns:updatePersonneResponse"/>
+  </wsdl:message>
+  <wsdl:message name="deletePersonneRequest">
+    <wsdl:part name="parameters" element="tns:deletePersonneRequest"/>
+  </wsdl:message>
+  <wsdl:message name="deletePersonneResponse">
+    <wsdl:part name="parameters" element="tns:deletePersonneResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="PersonnesPort">
+    <wsdl:operation name="addPersonne">
+      <wsdl:input message="tns:addPersonneRequest"/>
+      <wsdl:output message="tns:addPersonneResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonne">
+      <wsdl:input message="tns:getPersonneRequest"/>
+      <wsdl:output message="tns:getPersonneResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPersonnes">
+      <wsdl:input message="tns:getAllPersonnesRequest"/>
+      <wsdl:output message="tns:getAllPersonnesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="updatePersonne">
+      <wsdl:input message="tns:updatePersonneRequest"/>
+      <wsdl:output message="tns:updatePersonneResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonne">
+      <wsdl:input message="tns:deletePersonneRequest"/>
+      <wsdl:output message="tns:deletePersonneResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonnesPortSoap11" type="tns:PersonnesPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addPersonne">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonne">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPersonnes">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePersonne">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePersonne">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PersonnesPortService">
+    <wsdl:port name="PersonnesPortSoap11Port" binding="tns:PersonnesPortSoap11">
+      <soap:address location="http://localhost:8081/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
